@@ -1,0 +1,27 @@
+# Dependencies & logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+*.log
+
+# Scratch & Extraction scripts
+audio_page.html
+extract_audio.html
+extract_frames.html
+fetch_new_reel.js
+find_media.js
+generate_audio.js
+get_audio_page.js
+get_reel_info.js
+inspect_reel.js
+new_reel_embed.html
+parse_audio.js
+parse_reel.js
+reel_page.html
+test_dl.js
+video_snapshots.html
+view_video.html
+download_reel.js

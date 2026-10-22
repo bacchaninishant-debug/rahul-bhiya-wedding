@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Rajesh (Rahul) &amp; Harsha - Digital Wedding Invitation</title>
+  
+  <!-- SEO & WhatsApp Link Preview Meta -->
+  <meta name="description" content="We cordially invite you to celebrate the wedding of Rajesh (Rahul) & Harsha on 11th & 12th November 2026 at Balaji Banquet Hall, Jaipur. Tap to open the invitation!">
+  <meta property="og:title" content="Rajesh (Rahul) & Harsha - Wedding Invitation">
+  <meta property="og:description" content="You're Invited! Join us for the wedding festivities on 11 & 12 November 2026 in Jaipur. Click to open our animated invitation card.">
+  <meta property="og:image" content="assets/doorway_bg.jpg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#3897d8">
+
+  <!-- Google Fonts matching the exact Instagram Reel Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Tiro+Devanagari+Hindi:ital@0;1&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Central Configuration File -->
+  <script src="config.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-en doors-locked">
+
+  <!-- Floating Falling Petals -->
+  <canvas id="petalCanvas" class="petal-canvas"></canvas>
+
+  <!-- SVG Definition for Heart Clip Path (Matches Image 3) -->
+  <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+    <defs>
+      <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.5, 0.94 C 0.46, 0.90, 0.04, 0.62, 0.02, 0.36 C 0.00, 0.16, 0.15, 0.03, 0.32, 0.03 C 0.41, 0.03, 0.47, 0.09, 0.5, 0.18 C 0.53, 0.09, 0.59, 0.03, 0.68, 0.03 C 0.85, 0.03, 1.00, 0.16, 0.98, 0.36 C 0.96, 0.62, 0.54, 0.90, 0.5, 0.94 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- App Wrapper (Mobile Viewport on phone, luxury frame on desktop) -->
+  <div class="reel-app-container">
+    <div class="reel-mobile-device" id="reelDevice">
+
+      <!-- Top Phone Status / Browser Bar (Like in the Instagram Reel) -->
+      <div class="reel-browser-header">
+        <div class="header-left">
+          <span class="header-close">✕</span>
+          <div class="header-title-dropdown">
+            <span class="header-names">
+              <span class="t-en">Rajesh &amp; Harsha</span>
+              <span class="t-hi">राजेश एवं हर्षा</span>
+            </span>
+            <span class="header-url">wedding-invite.com</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <!-- WhatsApp Quick Share -->
+          <button id="btnHeaderShare" class="header-icon-btn" title="Share Invitation">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          </button>
+          <!-- Audio Toggle Button (Matches Top-Right translucent box in Reel) -->
+          <button id="btnSoundToggle" class="header-icon-btn sound-box-btn" title="Sound Mute/Unmute">
+            <span id="soundIcon">🔊</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Scrollable Content -->
+      <main class="reel-content-scroll" id="reelScrollArea">
+
+        <!-- =================================================================
+             SCENE 1: THE ARCHWAY CLOSED BLUE DOUBLE DOORS ("You're Invited")
+             Exact match to Image 1 & Image 2 in User Request
+             ================================================================= -->
+        <section class="scene-doorway" id="sceneDoorway">
+          <div class="doorway-image-wrapper">
+            <!-- Archway with Pink Bougainvillea -->
+            <img src="assets/doorway_bg.jpg" alt="Mediterranean Doorway" class="doorway-bg-photo">
+
+            <!-- 3D Double Door Component Positioned Precisely Over The Door Opening -->
+            <div class="arch-door-3d-portal" id="doorPortal">
+              <!-- Balcony Lake View Peek Behind Doors -->
+              <div class="door-lake-reveal">
+                <img src="assets/balcony_lake_view.jpg" alt="Balcony Lake View" class="lake-reveal-preview">
+              </div>
+
+              <!-- Left Blue Wooden Door Wing -->
+              <div class="door-wing door-wing-left" id="doorWingLeft">
+                <div class="door-wing-texture left-texture">
+                  <div class="door-arch-glass top-glass-left"></div>
+                  <div class="door-recessed-panel panel-upper"></div>
+                  <div class="door-recessed-panel panel-lower"></div>
+                  <div class="door-brass-handle handle-left"></div>
+                </div>
+              </div>
+
+              <!-- Right Blue Wooden Door Wing -->
+              <div class="door-wing door-wing-right" id="doorWingRight">
+                <div class="door-wing-texture right-texture">
+                  <div class="door-arch-glass top-glass-right"></div>
+                  <div class="door-recessed-panel panel-upper"></div>
+                  <div class="door-recessed-panel panel-lower"></div>
+                  <div class="door-brass-handle handle-right"></div>
+                </div>
+              </div>
+
+              <!-- Calligraphy Inscription on the Door ("You're Invited" + "- tap to open -") -->
+              <div class="door-inscription-layer" id="doorInscription">
+                <h1 class="door-calligraphy-script">
+                  <span class="t-en"><span class="word-youre">You're</span> <span class="word-invited">Invited</span></span>
+                  <span class="t-hi"><span class="word-youre">शुभ</span> <span class="word-invited">निमंत्रण</span></span>
+                </h1>
+                <div class="door-tap-prompt">
+                  <span class="tap-dash">—</span>
+                  <span class="tap-text t-en">tap to open</span>
+                  <span class="tap-text t-hi">खोलने हेतु टच करें</span>
+                  <span class="tap-dash">—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =================================================================
+             SCENE 2: ROMANTIC BALCONY LAKE VIEW ("We're Getting Married")
+             Exact match to Image 3 in User Request
+             ================================================================= -->
+        <section class="scene-balcony-couple" id="sceneCouple">
+          <div class="balcony-view-wrapper">
+            <!-- Generated Lake Como Balcony View with Bougainvillea Urns -->
+            <img src="assets/balcony_lake_view.jpg" alt="Lake Balcony" class="balcony-bg-photo">
+            <div class="balcony-soft-vignette"></div>
+
+            <!-- Couple Announcement Floating Text -->
+            <div class="balcony-text-overlay">
+              <div class="sacred-heart-crest">🤍</div>
+              
+              <p class="getting-married-cursive">
+                <span class="t-en">We're getting married</span>
+                <span class="t-hi">हमारा शुभ विवाह</span>
+              </p>
+
+              <div class="heart-divider-line">
+                <span class="line-wing"></span>
+                <span class="mini-heart">🤍</span>
+                <span class="line-wing"></span>
+              </div>
+
+              <!-- Groom Name & Parents -->
+              <div class="person-block groom-block">
+                <h2 class="person-script-golden">
+                  <span class="t-en">Rajesh</span>
+                  <span class="t-hi">चि. राजेश</span>
+                </h2>
+                <span class="alias-parenthesis">
+                  <span class="t-en">(Rahul)</span>
+                  <span class="t-hi">(राहुल)</span>
+                </span>
+                <p class="person-parents-subtitle">
+                  <span class="t-en">Son of Smt. Divya &amp; Shri Naresh Gulwani</span>
+                  <span class="t-hi">सुपुत्र : श्रीमती दिव्या एवं श्री नरेश गुलवानी</span>
+                </p>
+              </div>
+
+              <!-- Ampersand -->
+              <div class="couple-ampersand">
+                <span class="t-en">&amp;</span>
+                <span class="t-hi">संग</span>
+              </div>
+
+              <!-- Bride Name & Parents -->
+              <div class="person-block bride-block">
+                <h2 class="person-script-golden">
+                  <span class="t-en">Harsha</span>
+                  <span class="t-hi">सौ. कां. हर्षा</span>
+                </h2>
+                <p class="person-parents-subtitle">
+                  <span class="t-en">Daughter of Smt. Madhu &amp; Shri Ashok Pamnani</span>
+                  <span class="t-hi">सुपुत्री : श्रीमती मधु एवं श्री अशोक पमनानी</span>
+                </p>
+              </div>
+
+              <!-- Scroll Down Indicator -->
+              <div class="scroll-down-cue" id="cueScroll">
+                <span class="scroll-tag">
+                  <span class="t-en">SCROLL</span>
+                  <span class="t-hi">नीचे स्क्रॉल करें</span>
+                </span>
+                <span class="down-arrow-bounce">⌄</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =================================================================
+             SCENE 2B: WELCOME INVITATION VERSE PAGE
+             Exact match to Image 2 in User Request (Dedicated page in warm ivory parchment)
+             ================================================================= -->
+        <section class="scene-welcome-page" id="sceneWelcome">
+          <div class="welcome-parchment-card">
+            <div class="heart-divider-gold">
+              <span class="gold-line"></span>
+              <span class="gold-heart">💛</span>
+              <span class="gold-line"></span>
+            </div>
+
+            <div class="welcome-verse-box">
+              <p class="welcome-verse-text">
+                <span class="t-en">
+                  We are honored to welcome you to the<br>
+                  Wedding ceremony of <strong>Rajesh &amp; Harsha</strong><br>
+                  As they begin their journey together in<br>
+                  faith and love,<br>
+                  we thank you for being part of this<br>
+                  blessed occasion 💛
+                </span>
+                <span class="t-hi">
+                  हम आपको <strong>राजेश (राहुल) एवं सौ. कां. हर्षा</strong> के<br>
+                  शुभ विवाह समारोह में सादर आमंत्रित करते हैं।<br>
+                  विश्वास और प्रेम के साथ अपने नए जीवन की<br>
+                  शुरुआत में,<br>
+                  इस पावन मांगलिक अवसर पर आपका स्नेह एवं शुभाशीर्वाद प्रार्थनीय है 💛
+                </span>
+              </p>
+            </div>
+
+            <div class="heart-divider-gold">
+              <span class="gold-line"></span>
+              <span class="gold-heart">💛</span>
+              <span class="gold-line"></span>
+            </div>
+        </section>
+
+
+        <!-- =================================================================
+             SCENE 3: INTERACTIVE "SCRATCH TO REVEAL" HEART CARD
+             Exact match to Image 3 in User Request (Box removed, Blue Heart Shape)
+             ================================================================= -->
+        <section class="scene-scratch-section" id="sceneScratch">
+          <div class="card-parchment-container heart-scratch-page">
+            <div class="scene-subhead-pill">
+              <span class="t-en">blessed occasion 💛</span>
+              <span class="t-hi">शुभ मांगलिक अवसर 💛</span>
+            </div>
+
+            <h3 class="scene-cursive-title">
+              <span class="t-en">Scratch to Reveal</span>
+              <span class="t-hi">तारीख जानने के लिए स्क्रैच करें</span>
+            </h3>
+
+            <div class="heart-divider-blue">
+              <span class="blue-line"></span>
+              <span class="blue-heart">💙</span>
+              <span class="blue-line"></span>
+            </div>
+
+            <!-- Heart-Shaped Scratch Area (Box Removed, Beautiful Blue Glitter Heart) -->
+            <div class="heart-scratch-wrapper">
+              <!-- Revealed Secret Underneath inside Heart -->
+              <div class="heart-revealed-secret" id="scratchRevealedContent">
+                <div class="revealed-rings">💍✨</div>
+                <div class="revealed-date-bold">
+                  <span class="t-en">11 &amp; 12 NOVEMBER 2026</span>
+                  <span class="t-hi">11 एवं 12 नवम्बर 2026</span>
+                </div>
+                <div class="revealed-day-time">
+                  <span class="t-en">Wednesday &amp; Thursday</span>
+                  <span class="t-hi">बुधवार एवं गुरूवार</span>
+                </div>
+                <div class="revealed-venue-name">
+                  <span class="t-en">Balaji Banquet Hall, Jaipur</span>
+                  <span class="t-hi">बालाजी बैंक्वेट हॉल, जयपुर</span>
+                </div>
+                <p class="revealed-quote">
+                  <span class="t-en">"Two Hearts, One Sacred Journey"</span>
+                  <span class="t-hi">"दो दिलों का पावन संगम"</span>
+                </p>
+              </div>
+
+              <!-- Heart-Shaped Glitter Canvas -->
+              <canvas id="scratchCanvas" width="270" height="250" class="heart-glitter-canvas"></canvas>
+            </div>
+
+            <!-- Auto Reveal Action -->
+            <button id="btnAutoReveal" class="pill-action-btn auto-reveal-btn">
+              <span>🪄</span>
+              <span class="t-en">Auto Reveal Secret</span>
+              <span class="t-hi">ऑटो रिवील करें</span>
+            </button>
+          </div>
+        </section>
+
+
+        <!-- =================================================================
+             NEW SCENE: WEDDING PHOTO SLIDER (Floral Decor & Couple Sunset)
+             Exact match to Image 4 & Image 5 in User Request
+             ================================================================= -->
+        <section class="scene-photo-gallery" id="sceneGallery">
+          <div class="card-parchment-container gallery-container">
+            <div class="scene-subhead-pill">
+              <span class="t-en">cherished moments 📸</span>
+              <span class="t-hi">शुभ मांगलिक स्मृतियां 📸</span>
+            </div>
+
+            <h3 class="scene-cursive-title">
+              <span class="t-en">Glimpses of Celebration</span>
+              <span class="t-hi">समारोह की मनोरम झलकियां</span>
+            </h3>
+
+            <div class="heart-divider-blue">
+              <span class="blue-line"></span>
+              <span class="blue-heart">💙</span>
+              <span class="blue-line"></span>
+            </div>
+
+            <!-- 2-Image Carousel Slider matching Image 4 & 5 -->
+            <div class="wedding-carousel-box" id="weddingCarousel">
+              <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1: Flowers / Fool decor -->
+                <div class="carousel-slide active" data-index="0">
+                  <img src="assets/wedding_floral_decor.jpg" alt="Wedding Floral Decor" class="slide-photo">
+                  <div class="slide-caption">
+                    <span class="t-en">🌸 Sacred Floral Decor &amp; Mandap</span>
+                    <span class="t-hi">🌸 पावन पुष्प सज्जा एवं मंडप</span>
+                  </div>
+                </div>
+
+                <!-- Slide 2: Couple on Sunset Terrace -->
+                <div class="carousel-slide" data-index="1">
+                  <img src="assets/wedding_couple_terrace.jpg" alt="Wedding Couple" class="slide-photo">
+                  <div class="slide-caption">
+                    <span class="t-en">💍 Rajesh &amp; Harsha • Eternal Love</span>
+                    <span class="t-hi">💍 राजेश एवं हर्षा • पावन परिणय</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Navigation Arrows -->
+              <button class="carousel-nav-btn prev-btn" id="carouselPrevBtn" aria-label="Previous Slide">‹</button>
+              <button class="carousel-nav-btn next-btn" id="carouselNextBtn" aria-label="Next Slide">›</button>
+
+              <!-- Carousel Pagination Dots matching Image 4 & 5 -->
+              <div class="carousel-dots-strip" id="carouselDots">
+                <span class="carousel-dot active" data-slide="0"></span>
+                <span class="carousel-dot" data-slide="1"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =================================================================
+             SCENE 4: PRE-WEDDING EVENTS TIMELINE
+             Exact match to 8s in Instagram Reel
+             ================================================================= -->
+        <section class="scene-events-timeline" id="sceneEvents">
+          <div class="card-parchment-container">
+            <div class="scene-subhead-pill">
+              <span>💎</span>
+            </div>
+
+            <h3 class="scene-cursive-title">
+              <span class="t-en">Our Sacred Traditions</span>
+              <span class="t-hi">हमारी परम्पराएँ</span>
+            </h3>
+
+            <!-- Day 1 Timeline (Exact match to Card 1) -->
+            <div class="event-day-group">
+              <div class="event-date-strip">
+                <span class="t-en">Wednesday, 11th November 2026</span>
+                <span class="t-hi">बुधवार, 11 नवम्बर 2026</span>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Swagat</span>
+                    <span class="t-hi">स्वागत</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">10:00 AM</span>
+                    <span class="t-hi">प्रातः 10.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Behrana Sahib</span>
+                    <span class="t-hi">बहराणा साहिब</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">02:00 PM</span>
+                    <span class="t-hi">दोपहर 2.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row highlight-event">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Ring Ceremony</span>
+                    <span class="t-hi">रिंग सेरेमनी</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">08:00 PM</span>
+                    <span class="t-hi">रात्रि 8.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Preetibhoj</span>
+                    <span class="t-hi">प्रीतिभोज</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">08:00 PM</span>
+                    <span class="t-hi">रात्रि 8.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Location / Karyakram Sthal as on the printed card -->
+              <div class="event-card-venue-box">
+                <div class="venue-ornament">
+                  <span class="t-en">- Event Venue -</span>
+                  <span class="t-hi">- कार्यक्रम स्थल -</span>
+                </div>
+                <h5 class="venue-card-name">
+                  <span class="t-en">Balaji Banquet Hall</span>
+                  <span class="t-hi">बालाजी बैंक्वेट हॉल</span>
+                </h5>
+                <p class="venue-card-sub">
+                  <span class="t-en">Muhana Mandi Road, Kesar Chauraha, Jaipur</span>
+                  <span class="t-hi">मुहाना मण्डी रोड़, केसर चौराहा, जयपुर</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Day 2 Timeline (Exact match to Card 2) -->
+            <div class="event-day-group">
+              <div class="event-date-strip strip-royal">
+                <span class="t-en">Thursday, 12th November 2026</span>
+                <span class="t-hi">गुरूवार, 12 नवम्बर 2026</span>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Pallav</span>
+                    <span class="t-hi">पल्लव</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">10:00 AM</span>
+                    <span class="t-hi">प्रातः 10.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Carnival</span>
+                    <span class="t-hi">कार्निवाल</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">11:00 AM</span>
+                    <span class="t-hi">प्रातः 11.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Sath-Sog</span>
+                    <span class="t-hi">साठ-सोग</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">02:00 PM</span>
+                    <span class="t-hi">दोपहर 2.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Dikh</span>
+                    <span class="t-hi">दिख</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">05:00 PM</span>
+                    <span class="t-hi">सायं 5.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row highlight-event">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Baraat Nikasi</span>
+                    <span class="t-hi">बारात निकासी</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">06:00 PM</span>
+                    <span class="t-hi">सायं 6.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Dinner</span>
+                    <span class="t-hi">डिनर</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">08:00 PM</span>
+                    <span class="t-hi">रात्रि 8.00 बजे</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="event-minimal-row highlight-fere">
+                <div class="event-info-table">
+                  <span class="card-event-name">
+                    <span class="t-en">Panigrahan Sanskar</span>
+                    <span class="t-hi">पाणिग्रहण संस्कार</span>
+                  </span>
+                  <span class="card-event-divider">--::--</span>
+                  <span class="card-event-time">
+                    <span class="t-en">Auspicious Muhurat</span>
+                    <span class="t-hi">शुभलग्नानुसार</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Location / Karyakram Sthal as on the printed card -->
+              <div class="event-card-venue-box">
+                <div class="venue-ornament">
+                  <span class="t-en">- Event Venue -</span>
+                  <span class="t-hi">- कार्यक्रम स्थल -</span>
+                </div>
+                <h5 class="venue-card-name">
+                  <span class="t-en">Balaji Banquet Hall</span>
+                  <span class="t-hi">बालाजी बैंक्वेट हॉल</span>
+                </h5>
+                <p class="venue-card-sub">
+                  <span class="t-en">Muhana Mandi Road, Kesar Chauraha, Jaipur</span>
+                  <span class="t-hi">मुहाना मण्डी रोड़, केसर चौराहा, जयपुर</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =================================================================
+             SCENE 5: TRANSPORTATION & VENUE (Balaji Banquet Hall)
+             Exact match to Reel Transportation Screen
+             ================================================================= -->
+        <section class="scene-transport-venue" id="sceneVenue">
+          <div class="card-parchment-container">
+            <div class="scene-subhead-pill">
+              <span>🚗</span>
+            </div>
+
+            <h3 class="scene-cursive-title">
+              <span class="t-en">Transportation &amp; Venue</span>
+              <span class="t-hi">वेन्यू एवं मार्ग दर्शन</span>
+            </h3>
+
+            <div class="venue-location-card">
+              <h4 class="venue-title-bold">
+                <span class="t-en">Balaji Banquet Hall</span>
+                <span class="t-hi">बालाजी बैंक्वेट हॉल</span>
+              </h4>
+              <p class="venue-address-text">
+                <span class="t-en">Muhana Mandi Road, Kesar Chauraha, Jaipur, Rajasthan</span>
+                <span class="t-hi">मुहाना मण्डी रोड़, केसर चौराहा, जयपुर, राजस्थान</span>
+              </p>
+              <p class="venue-directions-hint">
+                <span class="t-en">Shuttle &amp; valet parking available at the venue.</span>
+                <span class="t-hi">पार्किंग एवं स्वागत व्यवस्था वेन्यू पर उपलब्ध है।</span>
+              </p>
+
+              <!-- Working Google Maps Button -->
+              <a href="https://maps.google.com/?q=Balaji+Banquet+Hall+Muhana+Mandi+Road+Kesar+Chauraha+Jaipur" target="_blank" class="google-maps-btn" id="btnGoogleMaps">
+                <span class="map-icon">📍</span>
+                <span class="t-en">Open in Google Maps</span>
+                <span class="t-hi">गूगल मैप्स में देखें</span>
+              </a>
+
+              <!-- Add to Google Calendar Option -->
+              <a id="btnGoogleCalendar" href="#" target="_blank" class="calendar-pill-btn">
+                <span>📅</span>
+                <span class="t-en">Add to Google Calendar</span>
+                <span class="t-hi">कैलेंडर में जोड़ें</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =================================================================
+             SCENE 6: FAMILY BLESSINGS & GUESTBOOK RSVP
+             ================================================================= -->
+        <section class="scene-blessings-rsvp" id="sceneRsvp">
+          <div class="card-parchment-container">
+            <div class="scene-subhead-pill">
+              <span>🌸</span>
+            </div>
+
+            <h3 class="scene-cursive-title">
+              <span class="t-en">With Divine Blessings</span>
+              <span class="t-hi">पूज्य बड़ों का शुभाशीर्वाद</span>
+            </h3>
+
+            <div class="blessings-lineage-box">
+              <span class="blessing-label">
+                <span class="t-en">Grandparents' Blessings:</span>
+                <span class="t-hi">परम पूज्य दादाजी-दादीजी का शुभाशीर्वाद:</span>
+              </span>
+              <p class="blessing-family-names">श्रीमती विशनी गुलवानी एवं स्व. श्री प्रेमचन्द गुलवानी</p>
+              
+              <span class="blessing-label" style="margin-top: 10px;">
+                <span class="t-en">Solicited by:</span>
+                <span class="t-hi">दर्शनाभिलाषी:</span>
+              </span>
+              <p class="blessing-family-names">श्रीमती दिव्या - श्री नरेश गुलवानी • श्रीमती मधु - श्री अशोक पमनानी</p>
+              <p class="relatives-line">समस्त गुलवानी एवं पमनानी परिवार</p>
+            </div>
+
+            <!-- RSVP Form -->
+            <div class="mini-rsvp-form-box">
+              <h4 class="rsvp-title">
+                <span class="t-en">Send Wishes &amp; RSVP</span>
+                <span class="t-hi">शुभकामनाएं एवं उपस्थिति संदेश</span>
+              </h4>
+              <form id="rsvpForm" novalidate>
+                <input type="text" id="rsvpName" placeholder="Your Name (आपका नाम)" required>
+                <select id="rsvpAttendance">
+                  <option value="Yes, Attending With Joy">🌸 Attending with Joy (सहर्ष उपस्थित होंगे)</option>
+                  <option value="Sending Blessings">💌 Sending Blessings (शुभकामनाएं प्रेषित)</option>
+                </select>
+                <textarea id="rsvpWishes" rows="2" placeholder="Write congratulations for Rajesh & Harsha... (शुभकामना संदेश लिखें)"></textarea>
+                <button type="submit" class="submit-wishes-btn">
+                  <span>💌</span>
+                  <span class="t-en">Send Wishes</span>
+                  <span class="t-hi">शुभकामनाएं भेजें</span>
+                </button>
+              </form>
+
+              <div id="rsvpSuccessAlert" class="rsvp-success-alert hidden">
+                <span class="t-en">✓ Thank you! Your wishes have been joyfully received!</span>
+                <span class="t-hi">✓ धन्यवाद! आपकी मंगलकामनाएं प्राप्त हो गई हैं!</span>
+              </div>
+
+              <!-- Wishes Wall -->
+              <div class="wishes-mini-wall" id="wishesWall"></div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- =================================================================
+             SCENE 7: FOOTER & CLOSING
+             ================================================================= -->
+        <footer class="reel-footer">
+          <div class="footer-rings">💍</div>
+          <p class="footer-names">
+            <span class="t-en">Rajesh &amp; Harsha</span>
+            <span class="t-hi">राजेश एवं हर्षा</span>
+          </p>
+          <p class="footer-date">
+            <span class="t-en">11 &amp; 12 November 2026 • Jaipur</span>
+            <span class="t-hi">11 एवं 12 नवम्बर 2026 • जयपुर</span>
+          </p>
+          <p class="footer-mantra">॥ शुभम् भवतु ॥ कल्याणमस्तु ॥</p>
+        </footer>
+
+      </main>
+
+      <!-- ===================================================================
+           FLOATING BOTTOM ACTIONS (Exact match to the 2 pills in the Reel)
+           Left: Language Pill "🌐 Arabic" -> "🌐 हिन्दी"
+           Right: Action Pill "✨ Use this Design" -> "✨ Share on WhatsApp"
+           =================================================================== -->
+      <div class="reel-floating-dock">
+        <button id="btnLangToggle" class="dock-pill-btn lang-pill">
+          <span class="globe-icon">🌐</span>
+          <span id="langLabel">हिन्दी</span>
+        </button>
+
+        <button id="btnDockShare" class="dock-pill-btn cta-pill">
+          <span class="sparkle-icon">✨</span>
+          <span class="t-en">Share on WhatsApp</span>
+          <span class="t-hi">व्हाट्सएप पर शेयर करें</span>
+        </button>
+      </div>
+
+    </div> <!-- /reel-mobile-device -->
+  </div> <!-- /reel-app-container -->
+
+  <!-- Share Modal Dialog (Guaranteed visible popup for WhatsApp & Link sharing) -->
+  <div id="shareModal" class="share-modal-backdrop hidden">
+    <div class="share-modal-dialog">
+      <button id="btnCloseShareModal" class="modal-close-btn" title="Close">&times;</button>
+      <div class="share-modal-header">
+        <span class="share-header-icon">📲</span>
+        <h3 class="share-modal-title">
+          <span class="t-en">Share Wedding Invitation</span>
+          <span class="t-hi">इनविटेशन कार्ड शेयर करें</span>
+        </h3>
+        <p class="share-modal-subtitle">
+          <span class="t-en">Send this animated card to family and friends:</span>
+          <span class="t-hi">अपनों को शादी का निमंत्रण भेजने के लिए विकल्प चुनें:</span>
+        </p>
+      </div>
+
+      <div class="share-modal-actions">
+        <!-- Direct WhatsApp Action Button -->
+        <a id="btnDirectWhatsApp" href="#" target="_blank" class="share-action-row wa-direct">
+          <span class="action-icon">💬</span>
+          <div class="action-text">
+            <strong>सीधे WhatsApp पर भेजें</strong>
+            <span>1-क्लिक में व्हाट्सएप खुलेगा और मैसेज तैयार मिलेगा</span>
+          </div>
+        </a>
+
+        <!-- Copy Full Formatted Message Button -->
+        <button id="btnCopyFullMessage" class="share-action-row copy-msg">
+          <span class="action-icon">📋</span>
+          <div class="action-text">
+            <strong id="copyFullMsgTitle">पूरा निमंत्रण मैसेज कॉपी करें</strong>
+            <span id="copyFullMsgSub">मैसेज कॉपी करके कहीं भी पेस्ट करें</span>
+          </div>
+        </button>
+
+        <!-- Direct Link Copy Input -->
+        <div class="share-link-input-group">
+          <input type="text" id="shareUrlInput" value="" placeholder="Invitation link..." readonly>
+          <button id="btnCopyOnlyUrl" class="copy-url-btn">लिंक कॉपी</button>
+        </div>
+
+        <!-- QR Code for Mobile Scanning -->
+        <div class="share-qr-box">
+          <p class="qr-label">मोबाइल से सीधे खोलने के लिए QR कोड स्कैन करें:</p>
+          <img id="shareQrImg" src="" alt="Invitation QR Code" class="qr-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="weddingAudio" src="assets/wedding_music.wav" preload="auto" loop></audio>
+
+  <!-- Interactive Script -->
+  <script src="script.js"></script>
+</body>
+</html>
