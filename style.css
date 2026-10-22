@@ -1372,8 +1372,46 @@ body.lang-hi .venue-card-sub {
    Left: "🌐 Arabic" -> "🌐 हिन्दी"
    Right: "✨ Use this Design" -> "✨ Share on WhatsApp"
    ============================================================================== */
-.reel-floating-dock {
-  display: none !important;
+/* Floating Language Switcher Pill (Placed at bottom-left as requested) */
+.floating-lang-pill {
+  position: absolute;
+  bottom: 24px;
+  left: 18px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.floating-lang-pill:hover,
+.floating-lang-pill:active {
+  background: #ffffff;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.32);
+}
+
+.floating-lang-pill .globe-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.floating-lang-pill #langLabel {
+  font-family: var(--font-hindi), var(--font-body), sans-serif;
+  letter-spacing: 0.3px;
 }
 
 .dock-pill-btn {

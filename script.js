@@ -395,7 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. LANGUAGE SWITCHER (English / हिन्दी)
   // ============================================================================
   if (btnLangToggle) {
-    btnLangToggle.addEventListener('click', () => {
+    btnLangToggle.addEventListener('click', (e) => {
+      if (e) e.stopPropagation();
       if (document.body.classList.contains('lang-en')) {
         document.body.classList.remove('lang-en');
         document.body.classList.add('lang-hi');
