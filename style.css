@@ -906,18 +906,21 @@ body.lang-hi .welcome-verse-text strong {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 28px 14px 14px;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+  padding: 24px 14px 38px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.75) 45%, rgba(0, 0, 0, 0.92) 100%);
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
   letter-spacing: 0.3px;
+  z-index: 10;
+  pointer-events: none;
 }
 
 body.lang-hi .slide-caption {
   font-family: var(--font-hindi), serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .carousel-nav-btn {
@@ -952,14 +955,14 @@ body.lang-hi .slide-caption {
 
 .carousel-dots-strip {
   position: absolute;
-  bottom: 10px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 6px;
-  z-index: 11;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 4px 10px;
+  z-index: 12;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 3px 8px;
   border-radius: 20px;
   backdrop-filter: blur(4px);
 }
@@ -1370,16 +1373,7 @@ body.lang-hi .venue-card-sub {
    Right: "✨ Use this Design" -> "✨ Share on WhatsApp"
    ============================================================================== */
 .reel-floating-dock {
-  position: absolute;
-  bottom: 14px;
-  left: 0;
-  width: 100%;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  pointer-events: none;
+  display: none !important;
 }
 
 .dock-pill-btn {
