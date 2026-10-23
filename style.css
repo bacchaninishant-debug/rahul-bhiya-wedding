@@ -785,14 +785,61 @@ body.lang-hi .welcome-verse-text strong {
 
 .heart-scratch-wrapper {
   position: relative;
-  width: 270px;
+  width: 274px;
   height: 250px;
   margin: 10px auto 16px;
   clip-path: url(#heartClip);
   -webkit-clip-path: url(#heartClip);
-  filter: drop-shadow(0 10px 25px rgba(56, 151, 216, 0.4));
+  filter: drop-shadow(0 12px 28px rgba(16, 95, 195, 0.45));
   background: transparent;
   border: none;
+  overflow: hidden;
+}
+
+/* Luxury Light Shimmer sweep over the shiny heart */
+.heart-scratch-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(
+    70deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.35) 48%,
+    rgba(180, 230, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.35) 52%,
+    transparent 62%
+  );
+  transform: translateY(-130%) rotate(25deg);
+  animation: heartShineSweep 4.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 6;
+  transition: opacity 0.5s ease;
+}
+
+.heart-scratch-wrapper.revealed::after {
+  opacity: 0;
+  display: none;
+}
+
+@keyframes heartShineSweep {
+  0% {
+    transform: translateY(-130%) rotate(25deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  45% {
+    transform: translateY(130%) rotate(25deg);
+    opacity: 0.95;
+  }
+  46%, 100% {
+    transform: translateY(130%) rotate(25deg);
+    opacity: 0;
+  }
 }
 
 .heart-revealed-secret {
@@ -986,6 +1033,100 @@ body.lang-hi .slide-caption {
   background: #3897d8;
   width: 20px;
   border-radius: 10px;
+}
+
+/* ==============================================================================
+   SCENE: COUNTING DOWN TO FOREVER (Exact match to User Request)
+   ============================================================================== */
+.scene-countdown-section {
+  padding: 18px 12px;
+  scroll-snap-align: start;
+}
+
+.countdown-card-box {
+  padding: 26px 14px 22px;
+  text-align: center;
+}
+
+.countdown-title {
+  color: #2b6094 !important;
+  font-size: 30px;
+  margin: 4px 0 10px;
+  letter-spacing: 0.5px;
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px auto 14px;
+  max-width: 330px;
+}
+
+.countdown-unit {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-box {
+  width: 100%;
+  max-width: 68px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #e4eff5 0%, #cbdce7 100%);
+  border: 1.5px solid rgba(165, 196, 218, 0.75);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(40, 85, 130, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.countdown-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(40, 85, 130, 0.18);
+}
+
+.cd-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a344d;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.cd-label {
+  display: block;
+  font-family: var(--font-title, Montserrat, sans-serif);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #6d889e;
+  letter-spacing: 1.5px;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+body.lang-hi .cd-label {
+  font-family: var(--font-hindi), serif;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.countdown-subtext {
+  font-size: 12px;
+  color: #7b622c;
+  font-weight: 600;
+  margin-top: 12px;
+  letter-spacing: 0.3px;
+}
+
+body.lang-hi .countdown-subtext {
+  font-family: var(--font-hindi), serif;
+  font-size: 13px;
 }
 
 .pill-action-btn {

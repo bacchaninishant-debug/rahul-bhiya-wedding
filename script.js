@@ -208,39 +208,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let isScratching = false;
     let isRevealed = false;
 
-    function initScratchCover() {
-      // Glitter blue & gold gradient
-      const grad = ctx.createLinearGradient(0, 0, width, height);
-      grad.addColorStop(0, '#3888c3');
-      grad.addColorStop(0.5, '#56a7e2');
-      grad.addColorStop(1, '#256da2');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, width, height);
-
-      // Gold Sparkle specks
-      for (let i = 0; i < 60; i++) {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-        ctx.beginPath();
-        ctx.arc(Math.random() * width, Math.random() * height, Math.random() * 2.2, 0, Math.PI * 2);
-        ctx.fill();
+    // Load High-Resolution Shiny Blue Glitter Heart Texture
+    const glitterImg = new Image();
+    let glitterLoaded = false;
+    glitterImg.onload = () => {
+      glitterLoaded = true;
+      if (!isRevealed) {
+        initScratchCover();
       }
+    };
+    glitterImg.src = 'assets/blue_glitter_heart.png';
 
-      // Heart outline
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
-      ctx.lineWidth = 2.5;
-      drawHeart(ctx, width / 2, height / 2 - 10, 75);
-      ctx.stroke();
+    function initScratchCover() {
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(0, 0, width, height);
 
-      // Cover text
-      const isHi = document.body.classList.contains('lang-hi');
-      ctx.fillStyle = '#ffffff';
-      ctx.font = isHi ? 'bold 15px "Tiro Devanagari Hindi", serif' : 'bold 14px Montserrat, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(isHi ? '✨ यहाँ स्क्रैच करें ✨' : '✨ SCRATCH HERE ✨', width / 2, height / 2 + 50);
-
-      ctx.font = isHi ? '12px "Tiro Devanagari Hindi", serif' : '11px Montserrat, sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-      ctx.fillText(isHi ? 'तारीख जानने के लिए टच एवं स्क्रैच करें' : 'Touch & scratch to reveal', width / 2, height / 2 + 70);
+      if (glitterLoaded && glitterImg.complete && glitterImg.naturalWidth > 0) {
+        // Draw the exact user shiny blue heart matching reference image
+        ctx.drawImage(glitterImg, 0, 0, width, height);
+      } else {
+        // High quality fallback shimmer gradient
+        const radGrad = ctx.createRadialGradient(width * 0.5, height * 0.42, 6, width * 0.5, height * 0.45, width * 0.65);
+        radGrad.addColorStop(0, '#ffffff');
+        radGrad.addColorStop(0.12, '#9fe3ff');
+        radGrad.addColorStop(0.3, '#2a8ae8');
+        radGrad.addColorStop(0.65, '#0b4998');
+        radGrad.addColorStop(1, '#041d4f');
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(0, 0, width, height);
+      }
     }
 
     window.redrawScratchCover = () => {
@@ -302,6 +298,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isRevealed) return;
       isRevealed = true;
       ctx.clearRect(0, 0, width, height);
+      scratchCanvas.style.display = 'none';
+      const wrapper = document.querySelector('.heart-scratch-wrapper');
+      if (wrapper) wrapper.classList.add('revealed');
       triggerConfetti();
     }
 
@@ -389,6 +388,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (weddingCarousel) {
     startCarouselTimer();
+  }
+
+  // ============================================================================
+  // 3C. LIVE COUNTDOWN TO FOREVER TIMER (Targeting 12 November Wedding)
+  // ============================================================================
+  const cdDays = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMinutes = document.getElementById('cdMinutes');
+  const cdSeconds = document.getElementById('cdSeconds');
+
+  if (cdDays && cdHours && cdMinutes && cdSeconds) {
+    function getWeddingTargetDate() {
+      // 11 November 00:00:00 (11 तारीख आते ही 00:00:00:00 हो जाए, फंक्शन टाइम के अनुसार नहीं)
+      const now = new Date();
+      let target = new Date(2026, 10, 11, 0, 0, 0); // Month 10 = November, Day 11, 00:00:00 midnight
+      if (now.getTime() > target.getTime()) {
+        target = new Date(now.getFullYear() + (now.getMonth() > 10 || (now.getMonth() === 10 && now.getDate() >= 11) ? 1 : 0), 10, 11, 0, 0, 0);
+      }
+      return target;
+    }
+
+    const weddingTarget = getWeddingTargetDate();
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = weddingTarget.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        cdDays.textContent = '00';
+        cdHours.textContent = '00';
+        cdMinutes.textContent = '00';
+        cdSeconds.textContent = '00';
+        const sub = document.getElementById('countdownSubtext');
+        if (sub) {
+          sub.innerHTML = '<span class="t-en">🎉 The Celebrations Have Begun! 🎉</span><span class="t-hi">🎉 पावन विवाह उत्सव प्रारम्भ! 🎉</span>';
+        }
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      cdDays.textContent = String(days).padStart(2, '0');
+      cdHours.textContent = String(hours).padStart(2, '0');
+      cdMinutes.textContent = String(minutes).padStart(2, '0');
+      cdSeconds.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   }
 
   // ============================================================================
